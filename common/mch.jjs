@@ -1,0 +1,20 @@
+java.lang.System.out.println("mch.start ...");
+
+var XMemcachedClient = Java.type("net.rubyeye.xmemcached.XMemcachedClient");
+var arg = {
+	host: "127.0.0.1"
+	,port:"11211"
+	,user:"user"
+	,method:"GET"
+	,uri:"/aaa"
+	,x:"0"
+	,value:"1"
+}
+
+for (var i=0;i<arguments.length;i++) {
+    arg[arguments[i]] = arguments[++i];
+}
+
+var mc = new XMemcachedClient(arg.host, parseInt(arg.port));
+mc.set(arg.user+"|"+arg.method+"|"+arg.uri, parseInt(arg.x), arg.value);
+java.lang.System.out.println("mch.done.");
